@@ -49,12 +49,14 @@ class UI(AI):
         for fileName in os.listdir("Photos"):
             currentFile.write(fileName)
             i = i+1
-            if not fileName + ".jpg" in os.listdir("Faces"):
+            if not (fileName + ".jpg" in os.listdir("Faces")):
                 try:
                     file = os.listdir("Photos/" + fileName)[0]
                     face_array = self.extract_face(
-                        "Photos/" + fileName + " /" + file, required_size=(160, 160))
+                        "Photos/" + fileName + "/" + file, required_size=(160, 160))
+
                     face = Image.fromarray(face_array)
+
                     face.save("Faces/" + fileName + ".jpg")
                 except:
                     pass
@@ -112,8 +114,8 @@ if imgFile != None:
         st.sidebar.markdown("Input Error")
 
 # st.markdown(" All Embeddings")
-# place_holder = st.empty()
-# place_holder.dataframe(ui.embeddings)
+place_holder = st.empty()
+place_holder.dataframe(ui.embeddings)
 
 if 'showsPhotos' not in st.session_state:
     st.session_state.showsPhotos = False

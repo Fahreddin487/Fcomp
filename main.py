@@ -24,7 +24,6 @@ class AI:
             self.embeddings = pd.read_csv("Embedding/embeddings.csv")
         else:
             self.embeddings = pd.DataFrame()
-            self.embeddings.to_csv("Embedding/embeddings.csv")
 
     def init_files(self):
         if not "Photos" in os.listdir():
